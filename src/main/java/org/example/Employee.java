@@ -4,7 +4,7 @@ public class Employee {
 
   private int  _id;
   private String _name;
-  private int _hours_worked;
+  private double _hours_worked;
   private double _hourly_rate;
   private double _deduction_province;
   private double _deduction_federal;
@@ -13,13 +13,18 @@ public class Employee {
 
   public Employee(int id,
                   String name,
-                  int hours_worked,
-                  double hourley_rate,
-                  double decustion_province,
+                  double hours_worked,
+                  double hourly_rate,
+                  double deduction_province,
                   double deduction_federal,
                   double education_allowance) {
-
-
+    this._id = id;
+    this._name = name;
+    this._hours_worked = hours_worked;
+    this._hourly_rate = hourly_rate;
+    this._deduction_province = deduction_province;
+    this._deduction_federal = deduction_federal;
+    this._education_allowance = education_allowance;
   }
 
   // GETTERS
@@ -29,7 +34,7 @@ public class Employee {
   public String GetName() {
     return this._name;
   }
-  public int GetHoursWorked() {
+  public double GetHoursWorked() {
     return this._hours_worked;
   }
   public double GetHourlyRate() {
@@ -44,7 +49,16 @@ public class Employee {
   public double GetEducationAllowance() {
     return this._education_allowance;
   }
+  public String GetInfo() {
+    return "ID: " + GetID() + " "
+            + "Name: " + GetName() + " "
+            + "Hourly rate: " + GetHourlyRate() + " "
+            + "Hours worked" + GetHoursWorked() + " "
+            + "Provincial Deductions: " + GetDeductionProvince() + " "
+            + "Federal Deductions: " + GetDeductionFederal() + " "
+            + "Education allowance: " + GetEducationAllowance();
 
+  }
   // SETTERS
   public void SetID(int new_id) {
     this._id = new_id;
@@ -52,9 +66,10 @@ public class Employee {
   public void SetName(String new_name) {
     this._name = new_name;
   }
-  public void SetHoursWorked(int new_hours_worked) {
+  public void SetHoursWorked(double new_hours_worked) {
     this._hours_worked = new_hours_worked;
   }
+  public void SetHourlyRate(double new_hourly_rate) { this._hourly_rate = new_hourly_rate; }
   public void SetDeductionProvince(double new_deduction_p) {
     this._deduction_province = new_deduction_p;
   }
