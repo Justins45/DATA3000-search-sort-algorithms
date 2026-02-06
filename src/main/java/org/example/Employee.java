@@ -84,7 +84,7 @@ public class Employee {
 
   public double CalcHourlySalary() {
     // implement hourly salary
-    return 0.0;
+    return (GetHourlyRate() * GetHoursWorked()) - GetDeductionFederal() - GetDeductionProvince() + GetEducationAllowance();
   }
 
 
