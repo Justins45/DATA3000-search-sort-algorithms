@@ -76,7 +76,7 @@ static List<Employee> ReadFile(String file_name) {
 /**
  * Employee String Parser
  *
- * @param Comma separated String
+ * @param s comma separated String
  * @return Employee
  */
 
@@ -84,6 +84,8 @@ static Employee EmployeeStringParser(String s) {
   String[] parts = s.split(",");
 
   int id = Integer.parseInt(parts[0]);
+  String name = parts[1];
+  double 
 
 
   return new Employee(id, );

@@ -4,7 +4,7 @@ public class Employee {
 
   private int  _id;
   private String _name;
-  private int _hours_worked;
+  private double _hours_worked;
   private double _hourly_rate;
   private double _deduction_province;
   private double _deduction_federal;
@@ -13,7 +13,7 @@ public class Employee {
 
   public Employee(int id,
                   String name,
-                  int hours_worked,
+                  double hours_worked,
                   double hourley_rate,
                   double decustion_province,
                   double deduction_federal,
@@ -29,7 +29,7 @@ public class Employee {
   public String GetName() {
     return this._name;
   }
-  public int GetHoursWorked() {
+  public double GetHoursWorked() {
     return this._hours_worked;
   }
   public double GetHourlyRate() {
@@ -52,7 +52,7 @@ public class Employee {
   public void SetName(String new_name) {
     this._name = new_name;
   }
-  public void SetHoursWorked(int new_hours_worked) {
+  public void SetHoursWorked(double new_hours_worked) {
     this._hours_worked = new_hours_worked;
   }
   public void SetDeductionProvince(double new_deduction_p) {
