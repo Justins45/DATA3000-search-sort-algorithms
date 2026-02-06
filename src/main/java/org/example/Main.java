@@ -17,39 +17,28 @@ public class Main {
     /*
      * Main Functionality Check list
      *
-     *  (1) Get data from txt file ✅
-     *  (2) sort Data by name AND by salary
-     *  (3) display time to complete for each data ✅
-     *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName) ✅
-     * (function at leat)
-     *  (5) prompt user to enter name to search for ✅
+     *  (1) Get data from txt file                                                   ✅
+     *  (2) sort Data by name AND by salary                                          ✅
+     *  (3) display time to complete for each data                                   ✅
+     *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName)  ✅
+     *  (5) prompt user to enter name to search for                                  ✅
      */
     // ==================================================================================
 
+    // (1) Get Data from txt files
     // Gets employee list WITHOUT repeats
-    List<Employee> employees_unsorted_wo_repeat = List.copyOf(ReadFile(
+    List<Employee> employees_unsorted_no_repeat = List.copyOf(ReadFile(
             "employeesWithoutRepeat.txt"));
-
     // Gets employee list WITH repeats
     List<Employee> employees_unsorted_w_repeat = List.copyOf(ReadFile(
             "employeesWithRepeat.txt"));
-
-
-    // Displacement of all data for testing
-    //for (Employee item : employees_unsorted_wo_repeat) {
-    //  System.out.println(item.GetInfo());
-    //}
-
-    //for (Employee item : employees_unsorted_w_repeat) {
-    //  System.out.println(item.GetInfo());
-    //}
 
     // (2) Sort data by name & by salary (using the sorting methods)
 
     // Sort by Name (Quick Sort) - WITHOUT repeats
     long name_norp_time_start = System.currentTimeMillis();
 
-    // SORT METHOD HERE
+    List<Employee> name_sorted_norp = QuickSort.Sort(employees_unsorted_no_repeat);
 
     long name_norp_time_end = System.currentTimeMillis();
     long name_norp_time_total = name_norp_time_end - name_norp_time_start;
@@ -57,7 +46,7 @@ public class Main {
     // Sort by Name (Quick Sort) - WITH repeats
     long name_wrp_time_start = System.currentTimeMillis();
 
-    // SORT METHOD HERE
+    List<Employee> name_sorted_wrp = QuickSort.Sort(employees_unsorted_w_repeat);
 
     long name_wrp_time_end = System.currentTimeMillis();
     long name_wrp_time_total = name_wrp_time_end - name_wrp_time_start;
@@ -65,7 +54,7 @@ public class Main {
     // Sort by Salary (Selection Sort) - WITHOUT repeats
     long salary_norp_time_start = System.currentTimeMillis();
 
-    // SORT METHOD HERE
+    List<Employee> salary_sorted_norp = QuickSort.Sort(employees_unsorted_no_repeat);
 
     long salary_norp_time_end = System.currentTimeMillis();
     long salary_norp_time_total = salary_norp_time_end - salary_norp_time_start;
@@ -73,7 +62,7 @@ public class Main {
     // Sort by Salary (Selection Sort) - WITH repeats
     long salary_wrp_time_start = System.currentTimeMillis();
 
-    // SORT METHOD HERE
+    List<Employee> salary_sorted_wrp = QuickSort.Sort(employees_unsorted_w_repeat);
 
     long salary_wrp_time_end = System.currentTimeMillis();
     long salary_wrp_time_total = salary_wrp_time_end - salary_wrp_time_start;
@@ -87,10 +76,12 @@ public class Main {
     // (4) write data to 2 csv files (sortedemployeeBySalary.csv & sortedemployeeByName.csv)
 
     // Write to file - Sorted by name
-
-    // WriteTOCSV("empUnsort", employees_unsorted_wo_repeat); // TEST FUNCTION AND IT WORKS
+    // TODO: uncomment when return method works
+    // WriteTOCSV("sortedemployeeByName", sorted_by_name);
 
     // Write to file - Sorted by salary
+    // TODO: uncomment when return method works
+    // WriteTOCSV("sortedemployeeBySalary", sorted_by_salary);
 
 
     // (5) prompt user for name to search csv files for.
@@ -98,16 +89,8 @@ public class Main {
      System.out.println("Please enter an Employee name to search for....");
      String input = scanner.nextLine();
 
-      // USE SEARCH TOOL FOR NAME
-
-     // gets back (index) if found and (-1) if not found
-     // int getback = BinarySearch.Search(input); // TODO: NEEDS A SORTED LIST
-//     if (getback == -1) {
-//       System.out.println("Sorry... That Employee was not found in our records...");
-//     } else {
-//       System.out.println("Hey! That Employee was found at position " + getback + " in " +
-//               "our records!");
-//     }
+    // TODO: uncomment when a sorted by name list is available
+    // BinarySearch.Search(input, sorted_by_name);
   }
 
   /**
