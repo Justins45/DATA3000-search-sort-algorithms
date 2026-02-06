@@ -19,19 +19,9 @@ public class Main {
      *  (2) sort Data by name AND by salary
      *  (3) display time to complete for each data
      *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName)
-     *  (5) prompt user to enter name to search for
+     *  (5) prompt user to enter name to search for ✅
      */
     // ==================================================================================
-
-    /*
-     * (1)
-     * Read file "employeesWithoutRepeat.txt" and populate array with said data.
-     *
-     * follows the format
-     *
-     * id, name, hours_worked, hourly_rate, deduction_province, deduction_federal, education_allowance
-     *
-     */
 
     // Gets employee list WITHOUT repeats
     List<Employee> employees_unsorted_wo_repeat = List.copyOf(ReadFile(
@@ -53,31 +43,67 @@ public class Main {
 
     // (2) Sort data by name & by salary (using the sorting methods)
 
-    // Sort by Name (Quick Sort)
-    long name_time_start = System.currentTimeMillis();
+    // Sort by Name (Quick Sort) - WITHOUT repeats
+    long name_norp_time_start = System.currentTimeMillis();
 
     // SORT METHOD HERE
 
-    long name_time_end = System.currentTimeMillis();
-    long name_time_total = name_time_end - name_time_start;
+    long name_norp_time_end = System.currentTimeMillis();
+    long name_norp_time_total = name_norp_time_end - name_norp_time_start;
 
-    // Sort by Salary (Selection Sort)
-    long salary_time_start = System.currentTimeMillis();
+    // Sort by Name (Quick Sort) - WITH repeats
+    long name_wrp_time_start = System.currentTimeMillis();
 
     // SORT METHOD HERE
 
-    long salary_time_end = System.currentTimeMillis();
-    long salary_time_total = salary_time_end - salary_time_start;
+    long name_wrp_time_end = System.currentTimeMillis();
+    long name_wrp_time_total = name_wrp_time_end - name_wrp_time_start;
+
+    // Sort by Salary (Selection Sort) - WITHOUT repeats
+    long salary_norp_time_start = System.currentTimeMillis();
+
+    // SORT METHOD HERE
+
+    long salary_norp_time_end = System.currentTimeMillis();
+    long salary_norp_time_total = salary_norp_time_end - salary_norp_time_start;
+
+    // Sort by Salary (Selection Sort) - WITH repeats
+    long salary_wrp_time_start = System.currentTimeMillis();
+
+    // SORT METHOD HERE
+
+    long salary_wrp_time_end = System.currentTimeMillis();
+    long salary_wrp_time_total = salary_wrp_time_end - salary_wrp_time_start;
 
 
     // (3) compare sorting algorithms times and print to console
 
-    System.out.println("Time to complete Quick Sort: " + name_time_total + "ms");
-    System.out.println("Time to complete Selection Sort: " + salary_time_total + "ms");
-
-    if (name_time_total > salary_time_total) {
+    System.out.println(
+            "====================================================================================");
+    System.out.println("WITH NO REPEATS");
+    System.out.println("Time to complete Quick Sort is: " + name_norp_time_total + "ms");
+    System.out.println("Time to complete Selection Sort is: " + salary_norp_time_total + "ms");
+    System.out.println(
+            "------------------------------");
+    if (name_norp_time_total > salary_norp_time_total) {
       System.out.println("Quick sort is the faster Sorting algorithm this time around!");
-    } else if (name_time_total < salary_time_total) {
+    } else if (name_norp_time_total < salary_norp_time_total) {
+      System.out.println("Selection sort is the faster Sorting algorithm this time around!");
+    } else {
+      System.out.println("Looks like we have a tie for the faster sorting algorithm!");
+    }
+    System.out.println(
+            "====================================================================================");
+    System.out.println("WITH REPEATS");
+    System.out.println("Time to complete Quick Sort is: " + name_wrp_time_total + "ms");
+    System.out.println("Time to complete Selection Sort is: " + salary_wrp_time_total + "ms");
+    System.out.println(
+            "====================================================================================");
+    System.out.println(
+            "------------------------------");
+    if (name_wrp_time_total > salary_wrp_time_total) {
+      System.out.println("Quick sort is the faster Sorting algorithm this time around!");
+    } else if (name_wrp_time_total < salary_wrp_time_total) {
       System.out.println("Selection sort is the faster Sorting algorithm this time around!");
     } else {
       System.out.println("Looks like we have a tie for the faster sorting algorithm!");

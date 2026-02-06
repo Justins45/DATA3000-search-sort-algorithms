@@ -7,9 +7,8 @@ public class BinarySearch {
 
     // return the index of first occurrence of the name if found multiple times
     // return -1 if name is not found
-    // + print results indicating found or not found
 
-    int index = 0; // initial spot
+    int index = -1; // default value (overridden with an index IF found)
 
     return index;
   }
