@@ -1,8 +1,10 @@
 package org.example;
 
+import java.util.List;
+
 public class BinarySearch {
 
-  public static int Search(String name, List<T> list) {
+  public static <T> int Search(String name, List<T> list) {
     // Create REVERSE binary search on a sorted array based on name
 
     // return the index of first occurrence of the name if found multiple times
