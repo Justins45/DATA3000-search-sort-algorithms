@@ -1,6 +1,8 @@
 package org.example;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -18,7 +20,8 @@ public class Main {
      *  (1) Get data from txt file ✅
      *  (2) sort Data by name AND by salary
      *  (3) display time to complete for each data ✅
-     *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName)
+     *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName) ✅
+     * (function at leat)
      *  (5) prompt user to enter name to search for ✅
      */
     // ==================================================================================
@@ -85,6 +88,8 @@ public class Main {
 
     // Write to file - Sorted by name
 
+    // WriteTOCSV("empUnsort", employees_unsorted_wo_repeat); // TEST FUNCTION AND IT WORKS
+
     // Write to file - Sorted by salary
 
 
@@ -95,14 +100,14 @@ public class Main {
 
       // USE SEARCH TOOL FOR NAME
 
-      // gets back (index) if found and (-1) if not found
-     int getback = BinarySearch.Search(input);
-     if (getback == -1) {
-       System.out.println("Sorry... That Employee was not found in our records...");
-     } else {
-       System.out.println("Hey! That Employee was found at position " + getback + " in " +
-               "our records!");
-     }
+     // gets back (index) if found and (-1) if not found
+     // int getback = BinarySearch.Search(input); // TODO: NEEDS A SORTED LIST
+//     if (getback == -1) {
+//       System.out.println("Sorry... That Employee was not found in our records...");
+//     } else {
+//       System.out.println("Hey! That Employee was found at position " + getback + " in " +
+//               "our records!");
+//     }
   }
 
   /**
@@ -204,6 +209,34 @@ public class Main {
     System.out.println(
             "====================================================================================");
     System.out.println(" "); // end of function spacer
+  }
+
+  public static void WriteTOCSV(String file_name, List<Employee> content) {
+    // Write to file
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file_name + ".csv"))) {
+
+      // Write header
+      writer.println("ID, Name, Hourly rate, Hours Worked, Provincial Deductions, Federal " +
+              "Deductions, Education Allowance");
+
+      // Write data rows
+      for (Employee e : content) {
+        String sb = e.GetID() + "," +
+                e.GetName() + "," +
+                e.GetHourlyRate() + "," +
+                e.GetHoursWorked() + "," +
+                e.GetDeductionProvince() + "," +
+                e.GetDeductionFederal() + "," +
+                e.GetEducationAllowance() + ",";
+
+        writer.println(sb);
+      }
+    } catch (IOException e) {
+      // System catch all for any file reading errors
+      System.err.println("Error Writing CSV file: " + e.getMessage());
+      e.printStackTrace();
+    }
+    System.out.println("CSV file created successfully");
   }
 
 }
