@@ -27,7 +27,7 @@ public class Main {
     List<Employee> e = List.copyOf(ReadFile("employeesWithoutRepeat.txt"));
 
     for (Employee item : e) {
-      System.out.println(item);
+      System.out.println(item.GetInfo());
     }
 
 

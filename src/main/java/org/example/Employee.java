@@ -49,7 +49,16 @@ public class Employee {
   public double GetEducationAllowance() {
     return this._education_allowance;
   }
+  public String GetInfo() {
+    return "ID: " + GetID() + " "
+            + "Name: " + GetName() + " "
+            + "Hourly rate: " + GetHourlyRate() + " "
+            + "Hours worked" + GetHoursWorked() + " "
+            + "Provincial Deductions: " + GetDeductionProvince() + " "
+            + "Federal Deductions: " + GetDeductionFederal() + " "
+            + "Education allowance: " + GetEducationAllowance();
 
+  }
   // SETTERS
   public void SetID(int new_id) {
     this._id = new_id;
