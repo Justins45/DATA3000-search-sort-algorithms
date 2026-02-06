@@ -18,7 +18,13 @@ public class Employee {
                   double deduction_province,
                   double deduction_federal,
                   double education_allowance) {
-
+    this._id = id;
+    this._name = name;
+    this._hours_worked = hours_worked;
+    this._hourly_rate = hourly_rate;
+    this._deduction_province = deduction_province;
+    this._deduction_federal = deduction_federal;
+    this._education_allowance = education_allowance;
   }
 
   // GETTERS
@@ -54,6 +60,7 @@ public class Employee {
   public void SetHoursWorked(double new_hours_worked) {
     this._hours_worked = new_hours_worked;
   }
+  public void SetHourlyRate(double new_hourly_rate) { this._hourly_rate = new_hourly_rate; }
   public void SetDeductionProvince(double new_deduction_p) {
     this._deduction_province = new_deduction_p;
   }
