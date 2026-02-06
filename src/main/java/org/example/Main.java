@@ -77,12 +77,16 @@ public class Main {
 
 
     // (3) compare sorting algorithms times and print to console
-
     DisplayTimeResults(name_norp_time_total, salary_norp_time_total, false);
     DisplayTimeResults(name_wrp_time_total, salary_wrp_time_total, true);
 
 
     // (4) write data to 2 csv files (sortedemployeeBySalary.csv & sortedemployeeByName.csv)
+
+    // Write to file - Sorted by name
+
+    // Write to file - Sorted by salary
+
 
     // (5) prompt user for name to search csv files for.
      Scanner scanner = new Scanner(System.in);
