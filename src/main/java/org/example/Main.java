@@ -24,13 +24,6 @@ public class Main {
      */
     // ==================================================================================
 
-    List<Employee> e = List.copyOf(ReadFile("employeesWithoutRepeat.txt"));
-
-    for (Employee item : e) {
-      System.out.println(item.GetInfo());
-    }
-
-
     /*
      * (1)
      * Read file "employeesWithoutRepeat.txt" and populate array with said data.
@@ -41,8 +34,14 @@ public class Main {
      *
      */
 
-    // (2) Sort data by name & by salary (using the sorting methods)
+    List<Employee> employees_unsorted_wo_repeat = List.copyOf(ReadFile(
+            "employeesWithoutRepeat.txt"));
 
+    for (Employee item : employees_unsorted_wo_repeat) {
+      System.out.println(item.GetInfo());
+    }
+
+    // (2) Sort data by name & by salary (using the sorting methods)
 
     // (3) compare sorting algorithms times and print to console
 
@@ -55,32 +54,36 @@ public class Main {
   /**
    * ReadFile function
    *<p>
-   * Takes in a string of the file name, and return an output of a List of <Employee> objects
+   * Takes in a string for a file name located in the root directory, and returns a List array
+   * of Employee objects.
    *</p>
    *
-   * @param file_name
-   * @return List<Employee>
+   * @param file_name String with file extension ex: employees.txt
+   * @return List of Employee objects
    */
-  // TODO: COMMENT THI SHIT
   public static List<Employee> ReadFile(String file_name) {
 
+    // initialize list
     List<Employee> result_empl = new ArrayList<>();
 
+    // get each line into a Steam of Strings for easier retrieval
+    try (Stream<String> lines = Files.lines(Paths.get(file_name))) {
 
-    try (Stream<String> lines =
-                 Files.lines(Paths.get(file_name))) {
-
+      // Set string to a list of strings for iterating
       List<String> result_str = lines.toList();
 
       for (String item : result_str) {
+        // Use Employee String Parser to comma separate each string and return Employee Object
         result_empl.add(EmployeeStringParser(item));
       }
 
     } catch (IOException e) {
+      // System catch all for any file reading errors
       System.err.println("Error reading file: " + e.getMessage());
       e.printStackTrace();
     }
 
+    // return list of employees
     return result_empl;
   }
 
