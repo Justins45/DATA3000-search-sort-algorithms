@@ -38,3 +38,53 @@ public class Main {
 
   }
 }
+
+/**
+ * ReadFile function
+ *<p>
+ * Takes in a string of the file name, and return an output of a List of <Employee> objects
+ *</p>
+ *
+ * @param file_name
+ * @return List<Employee>
+ */
+// TODO: COMMENT THI SHIT
+static List<Employee> ReadFile(String file_name) {
+
+  List<Employee> result_empl = new ArrayList<>();
+
+
+  try (Stream<String> lines = Files.lines(Paths.get(file_name))) {
+
+    List<String> result_str = lines.toList();
+    
+  for (String item : result_str) {
+    result_empl.add(EmployeeStringParser(item));
+  }
+    
+    
+
+  } catch (IOException e) {
+    System.err.println("Error reading file: " + e.getMessage());
+    e.printStackTrace();
+  }
+
+  return result_empl;
+}
+
+
+/**
+ * Employee String Parser
+ *
+ * @param Comma separated String
+ * @return Employee
+ */
+
+static Employee EmployeeStringParser(String s) {
+  String[] parts = s.split(",");
+
+  int id = Integer.parseInt(parts[0]);
+
+
+  return new Employee(id, );
+}
