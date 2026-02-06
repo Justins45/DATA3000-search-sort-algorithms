@@ -1,5 +1,12 @@
 package org.example;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -16,6 +23,13 @@ public class Main {
      *  (5) prompt user to enter name to search for
      */
     // ==================================================================================
+
+    List<Employee> e = List.copyOf(ReadFile("employeesWithoutRepeat.txt"));
+
+    for (Employee item : e) {
+      System.out.println(item);
+    }
+
 
     /*
      * (1)
@@ -37,61 +51,61 @@ public class Main {
     // (5) prompt user for name to search csv files for.
 
   }
-}
 
-/**
- * ReadFile function
- *<p>
- * Takes in a string of the file name, and return an output of a List of <Employee> objects
- *</p>
- *
- * @param file_name
- * @return List<Employee>
- */
-// TODO: COMMENT THI SHIT
-static List<Employee> ReadFile(String file_name) {
+  /**
+   * ReadFile function
+   *<p>
+   * Takes in a string of the file name, and return an output of a List of <Employee> objects
+   *</p>
+   *
+   * @param file_name
+   * @return List<Employee>
+   */
+  // TODO: COMMENT THI SHIT
+  public static List<Employee> ReadFile(String file_name) {
 
-  List<Employee> result_empl = new ArrayList<>();
+    List<Employee> result_empl = new ArrayList<>();
 
 
-  try (Stream<String> lines = Files.lines(Paths.get(file_name))) {
+    try (Stream<String> lines =
+                 Files.lines(Paths.get(file_name))) {
 
-    List<String> result_str = lines.toList();
-    
-  for (String item : result_str) {
-    result_empl.add(EmployeeStringParser(item));
+      List<String> result_str = lines.toList();
+
+      for (String item : result_str) {
+        result_empl.add(EmployeeStringParser(item));
+      }
+
+    } catch (IOException e) {
+      System.err.println("Error reading file: " + e.getMessage());
+      e.printStackTrace();
+    }
+
+    return result_empl;
   }
-    
-    
 
-  } catch (IOException e) {
-    System.err.println("Error reading file: " + e.getMessage());
-    e.printStackTrace();
+
+  /**
+   * Employee String Parser
+   *
+   * @param s comma separated String
+   * @return Employee
+   */
+    // TODO: COMMENT THIS
+  public static Employee EmployeeStringParser(String s) {
+    String[] parts = s.split(",");
+
+    int id = Integer.parseInt(parts[0]);
+    String name = parts[1];
+    double hours_worked = Double.parseDouble(parts[2]);
+    double hourly_rate = Double.parseDouble(parts[3]);
+    double deduction_province = Double.parseDouble(parts[4]);
+    double deduction_federal = Double.parseDouble(parts[5]);
+    double education_allowance = Double.parseDouble(parts[6]);
+
+
+    return new Employee(id, name, hours_worked, hourly_rate, deduction_province,
+            deduction_federal, education_allowance);
   }
-
-  return result_empl;
 }
 
-
-/**
- * Employee String Parser
- *
- * @param s comma separated String
- * @return Employee
- */
-
-static Employee EmployeeStringParser(String s) {
-  String[] parts = s.split(",");
-
-  int id = Integer.parseInt(parts[0]);
-  String name = parts[1];
-  double hours_worked = Double.parseDouble(parts[2]);
-  double hourly_rate = Double.parseDouble(parts[3]);
-  double deduction_province = Double.parseDouble(parts[4]);
-  double deduction_federal = Double.parseDouble(parts[5]);
-  double education_allowance = Double.parseDouble(parts[6]);
-
-
-  return new Employee(id, name, hours_worked, hourly_rate, deduction_province,
-          deduction_federal, education_allowance);
-}
