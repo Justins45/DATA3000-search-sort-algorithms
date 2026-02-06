@@ -211,16 +211,24 @@ public class Main {
     System.out.println(" "); // end of function spacer
   }
 
-  public static void WriteTOCSV(String file_name, List<Employee> content) {
-    // Write to file
-    try (PrintWriter writer = new PrintWriter(new FileWriter(file_name + ".csv"))) {
 
-      // Write header
-      writer.println("ID, Name, Hourly rate, Hours Worked, Provincial Deductions, Federal " +
-              "Deductions, Education Allowance");
+  /**
+   * Write to CSV file
+   *
+   * <p>
+   *   Writes a list of employees to a .csv file
+   * </p>
+   *
+   * @param file_name no .csv needed
+   * @param content list of Employees
+   */
+  public static void WriteTOCSV(String file_name, List<Employee> content) {
+    // Write to file (includes .csv into the file name)
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file_name + ".csv"))) {
 
       // Write data rows
       for (Employee e : content) {
+        // Convert Employee data to a single string with a comma to separate all te values
         String sb = e.GetID() + "," +
                 e.GetName() + "," +
                 e.GetHourlyRate() + "," +
@@ -229,10 +237,11 @@ public class Main {
                 e.GetDeductionFederal() + "," +
                 e.GetEducationAllowance() + ",";
 
+        // push to file
         writer.println(sb);
       }
     } catch (IOException e) {
-      // System catch all for any file reading errors
+      // System catch all for any file writing errors
       System.err.println("Error Writing CSV file: " + e.getMessage());
       e.printStackTrace();
     }
