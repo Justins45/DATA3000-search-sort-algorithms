@@ -17,7 +17,7 @@ public class Main {
      *
      *  (1) Get data from txt file ✅
      *  (2) sort Data by name AND by salary
-     *  (3) display time to complete for each data
+     *  (3) display time to complete for each data ✅
      *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName)
      *  (5) prompt user to enter name to search for ✅
      */
@@ -78,42 +78,13 @@ public class Main {
 
     // (3) compare sorting algorithms times and print to console
 
-    System.out.println(
-            "====================================================================================");
-    System.out.println("WITH NO REPEATS");
-    System.out.println("Time to complete Quick Sort is: " + name_norp_time_total + "ms");
-    System.out.println("Time to complete Selection Sort is: " + salary_norp_time_total + "ms");
-    System.out.println(
-            "------------------------------");
-    if (name_norp_time_total > salary_norp_time_total) {
-      System.out.println("Quick sort is the faster Sorting algorithm this time around!");
-    } else if (name_norp_time_total < salary_norp_time_total) {
-      System.out.println("Selection sort is the faster Sorting algorithm this time around!");
-    } else {
-      System.out.println("Looks like we have a tie for the faster sorting algorithm!");
-    }
-    System.out.println(
-            "====================================================================================");
-    System.out.println("WITH REPEATS");
-    System.out.println("Time to complete Quick Sort is: " + name_wrp_time_total + "ms");
-    System.out.println("Time to complete Selection Sort is: " + salary_wrp_time_total + "ms");
-    System.out.println(
-            "====================================================================================");
-    System.out.println(
-            "------------------------------");
-    if (name_wrp_time_total > salary_wrp_time_total) {
-      System.out.println("Quick sort is the faster Sorting algorithm this time around!");
-    } else if (name_wrp_time_total < salary_wrp_time_total) {
-      System.out.println("Selection sort is the faster Sorting algorithm this time around!");
-    } else {
-      System.out.println("Looks like we have a tie for the faster sorting algorithm!");
-    }
+    DisplayTimeResults(name_norp_time_total, salary_norp_time_total, false);
+    DisplayTimeResults(name_wrp_time_total, salary_wrp_time_total, true);
+
 
     // (4) write data to 2 csv files (sortedemployeeBySalary.csv & sortedemployeeByName.csv)
 
     // (5) prompt user for name to search csv files for.
-
-
      Scanner scanner = new Scanner(System.in);
      System.out.println("Please enter an Employee name to search for....");
      String input = scanner.nextLine();
@@ -194,5 +165,42 @@ public class Main {
     return new Employee(id, name, hours_worked, hourly_rate, deduction_province,
             deduction_federal, education_allowance);
   }
+
+  /**
+   * Display Time Results
+   *<p>
+   * Displays time results for a time comparison of a quick sort algorithm and a selection
+   * sort algorithm
+   *</p>
+   *
+   * @param quick_sort Quick sort time of completion
+   * @param selection_sort Selection sort time of completion
+   * @param with_repeats T/F if list has repeats
+   */
+  public static void DisplayTimeResults(long quick_sort, long selection_sort,
+                                        boolean with_repeats) {
+
+    // simple temporary variable for displaying with or without repeats in the list
+    String temp_var = (with_repeats) ? " " : " NO ";
+
+    System.out.println(
+            "====================================================================================");
+    System.out.println("Race WITH" + temp_var + "REPEATS");
+    System.out.println("Time to complete Quick Sort is: " + quick_sort + "ms");
+    System.out.println("Time to complete Selection Sort is: " + selection_sort + "ms");
+    System.out.println(
+            "------------------------------"); // divider
+    if (quick_sort > selection_sort) {
+      System.out.println("Quick sort is the faster Sorting algorithm this time around!");
+    } else if (quick_sort < selection_sort) {
+      System.out.println("Selection sort is the faster Sorting algorithm this time around!");
+    } else {
+      System.out.println("Looks like we have a tie for the faster sorting algorithm!");
+    }
+    System.out.println(
+            "====================================================================================");
+    System.out.println(" "); // end of function spacer
+  }
+
 }
 
