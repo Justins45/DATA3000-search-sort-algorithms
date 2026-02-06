@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -209,16 +210,19 @@ public class Main {
     // Write to file (includes .csv into the file name)
     try (PrintWriter writer = new PrintWriter(new FileWriter(file_name + ".csv"))) {
 
+      // Format decimals to 2 places and not 17 character strings
+      DecimalFormat df = new DecimalFormat("0.00");
+
       // Write data rows
       for (Employee e : content) {
         // Convert Employee data to a single string with a comma to separate all te values
         String sb = e.GetID() + "," +
                 e.GetName() + "," +
-                e.GetHourlyRate() + "," +
-                e.GetHoursWorked() + "," +
-                e.GetDeductionProvince() + "," +
-                e.GetDeductionFederal() + "," +
-                e.GetEducationAllowance() + ",";
+                df.format(e.GetHourlyRate()) + "," +
+                df.format(e.GetHoursWorked()) + "," +
+                df.format(e.GetDeductionProvince()) + "," +
+                df.format(e.GetDeductionFederal()) + "," +
+                df.format(e.GetEducationAllowance()) + ",";
 
         // push to file
         writer.println(sb);
