@@ -77,11 +77,11 @@ public class Main {
 
     // Write to file - Sorted by name
     // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeByName", sorted_by_name);
+    // WriteTOCSV("sortedemployeeByName", name_sorted_norp);
 
     // Write to file - Sorted by salary
     // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeBySalary", sorted_by_salary);
+    // WriteTOCSV("sortedemployeeBySalary", salary_sorted_norp);
 
 
     // (5) prompt user for name to search csv files for.
@@ -89,8 +89,8 @@ public class Main {
      System.out.println("Please enter an Employee name to search for....");
      String input = scanner.nextLine();
 
-    // TODO: uncomment when a sorted by name list is available
-    // BinarySearch.Search(input, sorted_by_name);
+
+     BinarySearch.Search(input, name_sorted_norp);
   }
 
   /**
