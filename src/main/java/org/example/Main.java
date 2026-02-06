@@ -14,7 +14,7 @@ public class Main {
     /*
      * Main Functionality Check list
      *
-     *  (1) Get data from txt file
+     *  (1) Get data from txt file ✅
      *  (2) sort Data by name AND by salary
      *  (3) display time to complete for each data
      *  (4) write data to csv files (sortedemployeeBySalary & sortedemployeeByName)
@@ -35,13 +35,42 @@ public class Main {
     List<Employee> employees_unsorted_wo_repeat = List.copyOf(ReadFile(
             "employeesWithoutRepeat.txt"));
 
-    for (Employee item : employees_unsorted_wo_repeat) {
-      System.out.println(item.GetInfo());
-    }
+    // Displacement of all data for testing
+    //for (Employee item : employees_unsorted_wo_repeat) {
+    //  System.out.println(item.GetInfo());
+    //}
 
     // (2) Sort data by name & by salary (using the sorting methods)
 
+    // Sort by Name (Quick Sort)
+    long name_time_start = System.currentTimeMillis();
+
+    // SORT METHOD HERE
+
+    long name_time_end = System.currentTimeMillis();
+    long name_time_total = name_time_end - name_time_start;
+
+    // Sort by Salary (Selection Sort)
+    long salary_time_start = System.currentTimeMillis();
+
+    // SORT METHOD HERE
+
+    long salary_time_end = System.currentTimeMillis();
+    long salary_time_total = salary_time_end - salary_time_start;
+
+
     // (3) compare sorting algorithms times and print to console
+
+    System.out.println("Time to complete Quick Sort: " + name_time_total + "ms");
+    System.out.println("Time to complete Selection Sort: " + salary_time_total + "ms");
+
+    if (name_time_total > salary_time_total) {
+      System.out.println("Quick sort is the faster Sorting algorithm this time around!");
+    } else if (name_time_total < salary_time_total) {
+      System.out.println("Selection sort is the faster Sorting algorithm this time around!");
+    } else {
+      System.out.println("Looks like we have a tie for the faster sorting algorithm!");
+    }
 
     // (4) write data to 2 csv files (sortedemployeeBySalary.csv & sortedemployeeByName.csv)
 
