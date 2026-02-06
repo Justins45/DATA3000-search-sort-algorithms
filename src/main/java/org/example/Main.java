@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
   static void main() {
 
@@ -90,14 +88,19 @@ public class Main {
 
   /**
    * Employee String Parser
+   * <p>
+   * Takes in a string of Employee data separated by commas and outputs to a single Employee
+   * object
+   * </p>
    *
    * @param s comma separated String
-   * @return Employee
+   * @return Employee object
    */
-    // TODO: COMMENT THIS
   public static Employee EmployeeStringParser(String s) {
+    // Separate string into array for parts grabbing
     String[] parts = s.split(",");
 
+    // assign parts to variables for easier reading
     int id = Integer.parseInt(parts[0]);
     String name = parts[1];
     double hours_worked = Double.parseDouble(parts[2]);
@@ -106,7 +109,7 @@ public class Main {
     double deduction_federal = Double.parseDouble(parts[5]);
     double education_allowance = Double.parseDouble(parts[6]);
 
-
+    // return new Employee object using the split string parts
     return new Employee(id, name, hours_worked, hourly_rate, deduction_province,
             deduction_federal, education_allowance);
   }
