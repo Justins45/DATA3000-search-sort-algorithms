@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.Scanner;
 
 public class Main {
   static void main() {
@@ -32,11 +33,21 @@ public class Main {
      *
      */
 
+    // Gets employee list WITHOUT repeats
     List<Employee> employees_unsorted_wo_repeat = List.copyOf(ReadFile(
             "employeesWithoutRepeat.txt"));
 
+    // Gets employee list WITH repeats
+    List<Employee> employees_unsorted_w_repeat = List.copyOf(ReadFile(
+            "employeesWithRepeat.txt"));
+
+
     // Displacement of all data for testing
     //for (Employee item : employees_unsorted_wo_repeat) {
+    //  System.out.println(item.GetInfo());
+    //}
+
+    //for (Employee item : employees_unsorted_w_repeat) {
     //  System.out.println(item.GetInfo());
     //}
 
@@ -76,6 +87,21 @@ public class Main {
 
     // (5) prompt user for name to search csv files for.
 
+
+     Scanner scanner = new Scanner(System.in);
+     System.out.println("Please enter an Employee name to search for....");
+     String input = scanner.nextLine();
+
+      // USE SEARCH TOOL FOR NAME
+
+      // gets back (index) if found and (-1) if not found
+     int getback = BinarySearch.Search(input);
+     if (getback == -1) {
+       System.out.println("Sorry... That Employee was not found in our records...");
+     } else {
+       System.out.println("Hey! That Employee was found at position " + getback + " in " +
+               "our records!");
+     }
   }
 
   /**
