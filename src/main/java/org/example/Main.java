@@ -85,8 +85,13 @@ static Employee EmployeeStringParser(String s) {
 
   int id = Integer.parseInt(parts[0]);
   String name = parts[1];
-  double 
+  double hours_worked = Double.parseDouble(parts[2]);
+  double hourly_rate = Double.parseDouble(parts[3]);
+  double deduction_province = Double.parseDouble(parts[4]);
+  double deduction_federal = Double.parseDouble(parts[5]);
+  double education_allowance = Double.parseDouble(parts[6]);
 
 
-  return new Employee(id, );
+  return new Employee(id, name, hours_worked, hourly_rate, deduction_province,
+          deduction_federal, education_allowance);
 }

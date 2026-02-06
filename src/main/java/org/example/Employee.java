@@ -14,11 +14,10 @@ public class Employee {
   public Employee(int id,
                   String name,
                   double hours_worked,
-                  double hourley_rate,
-                  double decustion_province,
+                  double hourly_rate,
+                  double deduction_province,
                   double deduction_federal,
                   double education_allowance) {
-
 
   }
 
