@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,62 +28,49 @@ public class Main {
     // ==================================================================================
 
     // (1) Get Data from txt files
-    // Gets employee list WITHOUT repeats
-    List<Employee> employees_unsorted_no_repeat = List.copyOf(ReadFile(
-            "employeesWithoutRepeat.txt"));
-    // Gets employee list WITH repeats
-    List<Employee> employees_unsorted_w_repeat = List.copyOf(ReadFile(
-            "employeesWithRepeat.txt"));
+    // Java option panel
+    JOptionPane.showMessageDialog(null, "Employee Data Sorting and Searching " +
+                    "Program!\n\nPress OK to Start", "Welcome to",
+            JOptionPane.INFORMATION_MESSAGE);
+
+    // Get file path
+    String file_path = JOptionPane.showInputDialog("Enter FULL path to employee data file:");
+
+    List<Employee> employees_unsorted = List.copyOf(ReadFile(
+            file_path));
 
     // (2) Sort data by name & by salary (using the sorting methods)
 
-    // Sort by Name (Quick Sort) - WITHOUT repeats
-    long name_norp_time_start = System.currentTimeMillis();
+    // Sort by Name (Quick Sort)
+    long name_sorted_time_start = System.currentTimeMillis();
 
-    List<Employee> name_sorted_norp = QuickSort.Sort(employees_unsorted_no_repeat);
+    List<Employee> name_sorted = QuickSort.Sort(employees_unsorted);
 
-    long name_norp_time_end = System.currentTimeMillis();
-    long name_norp_time_total = name_norp_time_end - name_norp_time_start;
+    long name_sorted_time_end = System.currentTimeMillis();
+    long name_sorted_time_total = name_sorted_time_end - name_sorted_time_start;
 
-    // Sort by Name (Quick Sort) - WITH repeats
-    long name_wrp_time_start = System.currentTimeMillis();
+    // Sort by Salary (Selection Sort)
+    long salary_sorted_time_start = System.currentTimeMillis();
 
-    List<Employee> name_sorted_wrp = QuickSort.Sort(employees_unsorted_w_repeat);
+    List<Employee> salary_sorted = QuickSort.Sort(employees_unsorted);
 
-    long name_wrp_time_end = System.currentTimeMillis();
-    long name_wrp_time_total = name_wrp_time_end - name_wrp_time_start;
-
-    // Sort by Salary (Selection Sort) - WITHOUT repeats
-    long salary_norp_time_start = System.currentTimeMillis();
-
-    List<Employee> salary_sorted_norp = QuickSort.Sort(employees_unsorted_no_repeat);
-
-    long salary_norp_time_end = System.currentTimeMillis();
-    long salary_norp_time_total = salary_norp_time_end - salary_norp_time_start;
-
-    // Sort by Salary (Selection Sort) - WITH repeats
-    long salary_wrp_time_start = System.currentTimeMillis();
-
-    List<Employee> salary_sorted_wrp = QuickSort.Sort(employees_unsorted_w_repeat);
-
-    long salary_wrp_time_end = System.currentTimeMillis();
-    long salary_wrp_time_total = salary_wrp_time_end - salary_wrp_time_start;
+    long salary_sorted_time_end = System.currentTimeMillis();
+    long salary_sorted_time_total = salary_sorted_time_end - salary_sorted_time_start;
 
 
     // (3) compare sorting algorithms times and print to console
-    DisplayTimeResults(name_norp_time_total, salary_norp_time_total, false);
-    DisplayTimeResults(name_wrp_time_total, salary_wrp_time_total, true);
+    DisplayTimeResults(name_sorted_time_total, salary_sorted_time_total);
 
 
     // (4) write data to 2 csv files (sortedemployeeBySalary.csv & sortedemployeeByName.csv)
 
     // Write to file - Sorted by name
     // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeByName", name_sorted_norp);
+    // WriteTOCSV("sortedemployeeByName", name_sorted);
 
     // Write to file - Sorted by salary
     // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeBySalary", salary_sorted_norp);
+    // WriteTOCSV("sortedemployeeBySalary", salary_sorted);
 
 
     // (5) prompt user for name to search csv files for.
@@ -91,7 +79,7 @@ public class Main {
      String input = scanner.nextLine();
 
 
-     BinarySearch.Search(input, name_sorted_norp);
+     BinarySearch.Search(input, name_sorted);
   }
 
   /**
@@ -168,17 +156,9 @@ public class Main {
    *
    * @param quick_sort Quick sort time of completion
    * @param selection_sort Selection sort time of completion
-   * @param with_repeats T/F if list has repeats
    */
-  public static void DisplayTimeResults(long quick_sort, long selection_sort,
-                                        boolean with_repeats) {
-
-    // simple temporary variable for displaying with or without repeats in the list
-    String temp_var = (with_repeats) ? " " : " NO ";
-
-    System.out.println(
-            "====================================================================================");
-    System.out.println("Race WITH" + temp_var + "REPEATS");
+  public static void DisplayTimeResults(long quick_sort, long selection_sort) {
+    System.out.println("######################################################");
     System.out.println("Time to complete Quick Sort is: " + quick_sort + "ms");
     System.out.println("Time to complete Selection Sort is: " + selection_sort + "ms");
     System.out.println(
@@ -191,7 +171,7 @@ public class Main {
       System.out.println("Looks like we have a tie for the faster sorting algorithm!");
     }
     System.out.println(
-            "====================================================================================");
+            "######################################################");
     System.out.println(" "); // end of function spacer
   }
 
