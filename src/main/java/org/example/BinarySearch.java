@@ -1,14 +1,18 @@
 package org.example;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class BinarySearch {
 
-    /**
-     * Public wrapper method.
-     * Takes the name string, creates a dummy Employee object, and calls the recursive search.
-     */
+  /**
+   * Public wrapper method.
+   * <p>
+   * Takes the name string, creates a dummy Employee object, and calls the recursive search.
+   * </p>
+   *
+   * @param name Takes in the name of the Employee you are searching for
+   * @param list list of SORTED BY NAME employees
+   */
     public static void Search(String name, List<Employee> list) {
         // Create a dummy employee with the name we are searching for.
         // The other values (0, 0.0) don't matter because compareTo only checks Name.
@@ -38,7 +42,7 @@ public class BinarySearch {
 
         int mid = low + (high - low) / 2;
         T midVal = list.get(mid);
-        int cmp = midVal.compareTo(key);
+        int cmp = midVal.compareTo(key); // returns 1, 0 or -1
 
         if (cmp < 0) {
             // Key is in the right half
@@ -58,19 +62,3 @@ public class BinarySearch {
         }
     }
 }
-     //   // Create REVERSE binary search on a sorted array based on name
-//
-//    // return the index of first occurrence of the name if found multiple times
-//   // return -1 if name is not found
-//
-//    int index = -1; // default value (overridden with an index IF found)
-//
-//
-//    if (index == -1) {
-//       System.out.println("Sorry... That Employee was not found in our records...");
-//     } else {
-//       System.out.println("Hey! That Employee was found at position " + index + " in " +
-//               "our records!");
-//     }
-//  }
-//}
