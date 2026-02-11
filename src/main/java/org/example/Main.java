@@ -38,8 +38,6 @@ public class Main {
     List<Employee> employees_unsorted = List.copyOf(ReadFile(
             file_path));
 
-    System.out.println(employees_unsorted);
-
     // (2) Sort data by name & by salary (using the sorting methods)
 
     // Sort by Name (Quick Sort)
