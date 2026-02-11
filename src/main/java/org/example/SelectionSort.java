@@ -17,7 +17,6 @@ public class SelectionSort {
 
         if (sorted_list.get(j).CalcHourlySalary() <
             sorted_list.get(minIndex).CalcHourlySalary()) {
-
           minIndex = j;
         }
       }
@@ -30,5 +29,3 @@ public class SelectionSort {
     return sorted_list;
   }
 }
-
-
