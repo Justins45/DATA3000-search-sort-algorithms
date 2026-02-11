@@ -1,15 +1,14 @@
 package org.example;
 
-public class Employee {
+public class Employee implements Comparable<Employee> { //<- Added the comparable
 
-  private int  _id;
+  private int _id;
   private String _name;
   private double _hours_worked;
   private double _hourly_rate;
   private double _deduction_province;
   private double _deduction_federal;
   private double _education_allowance;
-
 
   public Employee(int id,
                   String name,
@@ -28,27 +27,14 @@ public class Employee {
   }
 
   // GETTERS
-  public int GetID() {
-    return this._id;
-  }
-  public String GetName() {
-    return this._name;
-  }
-  public double GetHoursWorked() {
-    return this._hours_worked;
-  }
-  public double GetHourlyRate() {
-    return this._hourly_rate;
-  }
-  public double GetDeductionProvince() {
-    return this._deduction_province;
-  }
-  public double GetDeductionFederal() {
-    return this._deduction_federal;
-  }
-  public double GetEducationAllowance() {
-    return this._education_allowance;
-  }
+  public int GetID() { return this._id; }
+  public String GetName() { return this._name; }
+  public double GetHoursWorked() { return this._hours_worked; }
+  public double GetHourlyRate() { return this._hourly_rate; }
+  public double GetDeductionProvince() { return this._deduction_province; }
+  public double GetDeductionFederal() { return this._deduction_federal; }
+  public double GetEducationAllowance() { return this._education_allowance; }
+
   public String GetInfo() {
     return "ID: " + GetID() + " "
             + "Name: " + GetName() + " "
@@ -57,37 +43,26 @@ public class Employee {
             + "Provincial Deductions: " + GetDeductionProvince() + " "
             + "Federal Deductions: " + GetDeductionFederal() + " "
             + "Education allowance: " + GetEducationAllowance();
+  }
 
-  }
   // SETTERS
-  public void SetID(int new_id) {
-    this._id = new_id;
-  }
-  public void SetName(String new_name) {
-    this._name = new_name;
-  }
-  public void SetHoursWorked(double new_hours_worked) {
-    this._hours_worked = new_hours_worked;
-  }
+  public void SetID(int new_id) { this._id = new_id; }
+  public void SetName(String new_name) { this._name = new_name; }
+  public void SetHoursWorked(double new_hours_worked) { this._hours_worked = new_hours_worked; }
   public void SetHourlyRate(double new_hourly_rate) { this._hourly_rate = new_hourly_rate; }
-  public void SetDeductionProvince(double new_deduction_p) {
-    this._deduction_province = new_deduction_p;
-  }
-  public void SetDeductionFederal(double new_deduction_f) {
-    this._deduction_federal = new_deduction_f;
-  }
-  public void SetEducationAllowance(double new_edu_allowance) {
-    this._education_allowance = new_edu_allowance;
-  }
+  public void SetDeductionProvince(double new_deduction_p) { this._deduction_province = new_deduction_p; }
+  public void SetDeductionFederal(double new_deduction_f) { this._deduction_federal = new_deduction_f; }
+  public void SetEducationAllowance(double new_edu_allowance) { this._education_allowance = new_edu_allowance; }
 
   // METHODS
-
   public double CalcHourlySalary() {
-    // implement hourly salary
     return (GetHourlyRate() * GetHoursWorked()) - GetDeductionFederal() - GetDeductionProvince() + GetEducationAllowance();
   }
 
-
-
-
+  // REQUIRED FOR SORTING/SEARCHING
+  @Override
+  public int compareTo(Employee other) {
+    // Sorts by name alphabetically (Case Insensitive)
+    return this._name.compareToIgnoreCase(other.GetName());
+  }
 }
