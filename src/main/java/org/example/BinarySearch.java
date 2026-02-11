@@ -24,9 +24,9 @@ public class BinarySearch {
 
         // Output results
         if (index == -1) {
-            System.out.println("Sorry... That Employee '" + name + "' was not found in our records...");
+            System.out.println("Employee was not found...");
         } else {
-            System.out.println("Hey! That Employee '" + name + "' was found at position " + index + " in our records!");
+            System.out.println("Employee found at index => " + index);
         }
     }
 

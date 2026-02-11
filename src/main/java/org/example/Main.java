@@ -10,7 +10,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-import java.util.Scanner;
 
 public class Main {
   static void main() {
@@ -38,6 +37,8 @@ public class Main {
 
     List<Employee> employees_unsorted = List.copyOf(ReadFile(
             file_path));
+
+    System.out.println(employees_unsorted);
 
     // (2) Sort data by name & by salary (using the sorting methods)
 
@@ -74,11 +75,9 @@ public class Main {
 
 
     // (5) prompt user for name to search csv files for.
-     Scanner scanner = new Scanner(System.in);
-     System.out.println("Please enter an Employee name to search for....");
-     String input = scanner.nextLine();
 
-
+     System.out.println("Enter the name of the employee to search");
+     String input = JOptionPane.showInputDialog("Enter the name of an Employee to search for");
      BinarySearch.Search(input, name_sorted);
   }
 
@@ -215,5 +214,6 @@ public class Main {
     }
     System.out.println("Write employee data sorted by their " + s + " into file...");
   }
+
 }
 
