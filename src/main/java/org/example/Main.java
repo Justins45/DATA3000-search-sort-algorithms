@@ -66,11 +66,11 @@ public class Main {
 
     // Write to file - Sorted by name
     // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeByName", name_sorted);
+    // WriteTOCSV("sortedemployeeByName", name_sorted, "name");
 
     // Write to file - Sorted by salary
     // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeBySalary", salary_sorted);
+    // WriteTOCSV("sortedemployeeBySalary", salary_sorted, "salary");
 
 
     // (5) prompt user for name to search csv files for.
@@ -185,8 +185,9 @@ public class Main {
    *
    * @param file_name no .csv needed
    * @param content list of Employees
+   * @param s data type that list is sorted by written as a string
    */
-  public static void WriteTOCSV(String file_name, List<Employee> content) {
+  public static void WriteTOCSV(String file_name, List<Employee> content, String s) {
     // Write to file (includes .csv into the file name)
     try (PrintWriter writer = new PrintWriter(new FileWriter(file_name + ".csv"))) {
 
@@ -212,8 +213,7 @@ public class Main {
       System.err.println("Error Writing CSV file: " + e.getMessage());
       e.printStackTrace();
     }
-    System.out.println("CSV file created successfully");
+    System.out.println("Write employee data sorted by their " + s + " into file...");
   }
-
 }
 
