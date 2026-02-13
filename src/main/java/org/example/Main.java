@@ -67,8 +67,7 @@ public class Main {
      WriteTOCSV("sortedemployeeByName", name_sorted, "name");
 
     // Write to file - Sorted by salary
-    // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeBySalary", salary_sorted, "salary");
+     WriteTOCSV("sortedemployeeBySalary", salary_sorted, "salary");
 
 
     // (5) prompt user for name to search csv files for.
@@ -159,9 +158,9 @@ public class Main {
     System.out.println("Time to complete Selection Sort is: " + selection_sort + "ms");
     System.out.println(
             "------------------------------"); // divider
-    if (quick_sort > selection_sort) {
+    if (quick_sort < selection_sort) {
       System.out.println("Quick sort is the faster Sorting algorithm this time around!");
-    } else if (quick_sort < selection_sort) {
+    } else if (quick_sort > selection_sort) {
       System.out.println("Selection sort is the faster Sorting algorithm this time around!");
     } else {
       System.out.println("Looks like we have a tie for the faster sorting algorithm!");
@@ -199,7 +198,8 @@ public class Main {
                 df.format(e.GetHoursWorked()) + "," +
                 df.format(e.GetDeductionProvince()) + "," +
                 df.format(e.GetDeductionFederal()) + "," +
-                df.format(e.GetEducationAllowance()) + ",";
+                df.format(e.GetEducationAllowance()) + "," +
+                df.format(e.CalcHourlySalary());
 
         // push to file;
         writer.println(sb);
