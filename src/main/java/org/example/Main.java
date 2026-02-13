@@ -35,7 +35,7 @@ public class Main {
     // Get file path
     String file_path = JOptionPane.showInputDialog("Enter FULL path to employee data file:");
 
-    List<Employee> employees_unsorted = List.copyOf(ReadFile(
+    ArrayList<Employee> employees_unsorted = new ArrayList<>(ReadFile(
             file_path));
 
     // (2) Sort data by name & by salary (using the sorting methods)
@@ -51,7 +51,7 @@ public class Main {
     // Sort by Salary (Selection Sort)
     long salary_sorted_time_start = System.currentTimeMillis();
 
-    List<Employee> salary_sorted = QuickSort.Sort(employees_unsorted);
+    List<Employee> salary_sorted = SelectionSort.Sort(employees_unsorted);
 
     long salary_sorted_time_end = System.currentTimeMillis();
     long salary_sorted_time_total = salary_sorted_time_end - salary_sorted_time_start;
@@ -64,8 +64,7 @@ public class Main {
     // (4) write data to 2 csv files (sortedemployeeBySalary.csv & sortedemployeeByName.csv)
 
     // Write to file - Sorted by name
-    // TODO: uncomment when return method works
-    // WriteTOCSV("sortedemployeeByName", name_sorted, "name");
+     WriteTOCSV("sortedemployeeByName", name_sorted, "name");
 
     // Write to file - Sorted by salary
     // TODO: uncomment when return method works
@@ -202,7 +201,7 @@ public class Main {
                 df.format(e.GetDeductionFederal()) + "," +
                 df.format(e.GetEducationAllowance()) + ",";
 
-        // push to file
+        // push to file;
         writer.println(sb);
       }
     } catch (IOException e) {
